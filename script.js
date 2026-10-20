@@ -2,7 +2,7 @@ const weddingCards = [
   {
     number: 1,
     name: "progoti 183 ১",
-    image: "progoti183.jpg",
+    image: "ss1122.jpg",
     price: "18 টাকা/পিস"
   },
   {
