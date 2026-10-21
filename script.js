@@ -91,3 +91,78 @@ const weddingCards = [
     price: "৮৫ টাকা/পিস"
   }
 ];
+/* Full Image Preview Popup */
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Create popup automatically
+    const modal = document.createElement("div");
+    modal.className = "image-preview-modal";
+
+    modal.innerHTML = `
+        <div class="image-preview-content">
+            <button
+                class="image-preview-close"
+                type="button"
+                aria-label="Close image preview"
+            >&times;</button>
+
+            <img src="" alt="Full image preview">
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const previewImage = modal.querySelector(
+        ".image-preview-content img"
+    );
+
+    const closeButton = modal.querySelector(
+        ".image-preview-close"
+    );
+
+    // Open full image when a card or its image is clicked
+    document.addEventListener("click", function (event) {
+        const card = event.target.closest(".wedding-card");
+
+        if (!card) return;
+
+        // Ignore clicks on links or buttons inside the card
+        if (event.target.closest("a, button")) return;
+
+        const image = card.querySelector("img");
+
+        if (!image || !image.src) return;
+
+        event.preventDefault();
+
+        previewImage.src = image.src;
+        previewImage.alt = image.alt || "Full image preview";
+
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+
+    // Close popup
+    function closePreview() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        previewImage.src = "";
+    }
+
+    closeButton.addEventListener("click", closePreview);
+
+    // Close when clicking the dark background
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closePreview();
+        }
+    });
+
+    // Close with Escape key
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" &&
+            modal.classList.contains("active")) {
+            closePreview();
+        }
+    });
+});
