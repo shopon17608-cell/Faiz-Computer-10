@@ -14,9 +14,9 @@ const weddingCards = [
   },
   {
     number: 3,
-    name: "আপনার কার্ডের নাম ৩",
+    name: "মা প্রডাক্ট 839",
     image: "images/card-03.jpg",
-    price: "২৫ টাকা/পিস"
+    price: "17 টাকা/পিস"
   },
   {
     number: 4,
